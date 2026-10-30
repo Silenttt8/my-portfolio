@@ -1,0 +1,279 @@
+/* =====================================================
+   JULES.GOOGLE OCTOPUS & PIXEL-CORNER FEATURE STAGE
+   ===================================================== */
+
+.jules-octopus-section {
+  position: relative;
+  z-index: 1;
+  padding: 60px 0 110px;
+  overflow: hidden;
+}
+
+.jules-stage {
+  display: grid;
+  grid-template-columns: 300px 1fr 300px;
+  align-items: center;
+  gap: 28px;
+  position: relative;
+}
+
+.jules-side-col {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: relative;
+}
+
+/* ── Pixel-Corner Dark Cards (Harmonious & Easy on the Eyes) ── */
+.jules-pixel-card {
+  position: relative;
+  background: rgba(18, 11, 34, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 26px 24px;
+  font-family: 'JetBrains Mono', monospace;
+  border: 1px solid rgba(167, 139, 250, 0.22);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  /* 8-bit stepped pixel corners */
+  clip-path: polygon(
+    0 6px,
+    3px 6px,
+    3px 3px,
+    6px 3px,
+    6px 0,
+    calc(100% - 6px) 0,
+    calc(100% - 6px) 3px,
+    calc(100% - 3px) 3px,
+    calc(100% - 3px) 6px,
+    100% 6px,
+    100% calc(100% - 6px),
+    calc(100% - 3px) calc(100% - 6px),
+    calc(100% - 3px) calc(100% - 3px),
+    calc(100% - 6px) calc(100% - 3px),
+    calc(100% - 6px) 100%,
+    6px 100%,
+    6px calc(100% - 3px),
+    3px calc(100% - 3px),
+    3px calc(100% - 6px),
+    0 calc(100% - 6px)
+  );
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.jules-pixel-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(192, 132, 252, 0.5);
+  box-shadow:
+    0 0 28px rgba(139, 92, 246, 0.22),
+    0 18px 40px rgba(0, 0, 0, 0.65);
+}
+
+/* Card Icons */
+.jules-card-icon {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.jules-card-icon--pink {
+  background: #e935a8;
+  color: #120224;
+  border-radius: 50%;
+}
+
+.jules-card-icon--yellow {
+  background: #ffc61a;
+  color: #120224;
+  border-radius: 6px;
+}
+
+.jules-card-icon--cyan {
+  color: #2bf0ff;
+}
+
+.jules-card-icon--purple-text {
+  color: #8b5cf6;
+  font-size: 18px;
+  justify-content: flex-start;
+}
+
+.jules-card-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.jules-card-desc {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 1.65;
+  color: #cbd5e1;
+}
+
+.jules-inline-link {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.jules-inline-link:hover {
+  color: #2bf0ff;
+}
+
+/* ── Center Cyber-Octopus ── */
+.octopus-center {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.octopus-svg-wrap {
+  width: 100%;
+  max-width: 470px;
+  animation: octo-float 5s ease-in-out infinite;
+  filter: drop-shadow(0 20px 50px rgba(10, 2, 24, 0.85));
+}
+
+.octopus-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@keyframes octo-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+/* Spinning Gears inside Octopus */
+.octo-gear-spin {
+  animation: gear-rotate 9s linear infinite;
+  transform-origin: 0px 0px;
+}
+
+.octo-gear-spin-reverse {
+  animation: gear-rotate-rev 6s linear infinite;
+  transform-origin: 0px 0px;
+}
+
+@keyframes gear-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes gear-rotate-rev {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+/* Blinking Pixel Particles inside Octopus */
+.pixel-blink {
+  animation: pixel-pulse 1.6s steps(2, start) infinite;
+}
+
+@keyframes pixel-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+/* ── Decorative Cyan & Purple Pixel Clusters (Like Screenshot) ── */
+.pixel-cluster {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(2, 12px);
+  grid-auto-rows: 12px;
+  pointer-events: none;
+  z-index: 2;
+  animation: cluster-glitch 3.5s steps(2) infinite;
+}
+
+.pixel-cluster span {
+  display: block;
+  width: 12px;
+  height: 12px;
+}
+
+.pixel-cluster--cyan span {
+  background: rgba(56, 189, 248, 0.75);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+}
+
+.pixel-cluster--purple span {
+  background: rgba(168, 85, 247, 0.75);
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.35);
+}
+
+.pixel-cluster span:nth-child(1) { grid-column: 2; grid-row: 1; }
+.pixel-cluster span:nth-child(2) { grid-column: 1 / span 2; grid-row: 2; width: 24px; }
+.pixel-cluster span:nth-child(3) { grid-column: 2; grid-row: 3; }
+
+.pixel-cluster--tl {
+  top: 22px;
+  left: -32px;
+}
+
+.pixel-cluster--mr {
+  top: 42%;
+  left: -30px;
+}
+
+.pixel-cluster--octo-top {
+  top: 12%;
+  left: 16%;
+}
+
+.pixel-cluster--octo-bot {
+  bottom: 4%;
+  left: 18%;
+}
+
+@keyframes cluster-glitch {
+  0%, 100% { transform: translate(0, 0); opacity: 0.95; }
+  50% { transform: translate(-4px, 4px); opacity: 0.7; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 1080px) {
+  .jules-stage {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+    margin: 0 auto;
+    gap: 36px;
+  }
+
+  .octopus-center {
+    order: -1;
+  }
+
+  .jules-side-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .jules-side-col {
+    grid-template-columns: 1fr;
+  }
+
+  .octopus-svg-wrap {
+    max-width: 340px;
+  }
+}
+

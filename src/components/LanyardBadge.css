@@ -1,0 +1,360 @@
+/* ================================================
+   3D LANYARD BADGE (like alfari.my.id)
+================================================ */
+
+.lanyard-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  perspective: 1200px;
+  user-select: none;
+}
+
+/* Lanyard Strap */
+.lanyard-strap {
+  position: relative;
+  width: 38px;
+  height: 90px;
+  background: linear-gradient(180deg, #181d28 0%, #0f131a 100%);
+  border-left: 2px solid rgba(255, 255, 255, 0.08);
+  border-right: 2px solid rgba(0, 0, 0, 0.6);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  transform-origin: top center;
+  transform: rotate(-3deg);
+}
+
+.lanyard-strap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.03) 0px,
+    rgba(255, 255, 255, 0.03) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+}
+
+.lanyard-strap__text {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) rotate(90deg);
+  transform-origin: center center;
+  white-space: nowrap;
+  font-family: var(--font-mono, monospace);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.45);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Clasp / Metal Clip */
+.lanyard-clasp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  margin-top: -6px;
+  margin-bottom: -10px;
+}
+
+.lanyard-clasp__ring {
+  width: 24px;
+  height: 12px;
+  border: 3px solid #71717a;
+  border-radius: 6px;
+  background: transparent;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.lanyard-clasp__metal {
+  width: 18px;
+  height: 22px;
+  background: linear-gradient(135deg, #a1a1aa 0%, #52525b 50%, #27272a 100%);
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* 3D Badge Card Wrapper */
+.lanyard-card-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  transition: transform 0.15s ease-out;
+  transform-style: preserve-3d;
+  cursor: grab;
+}
+
+.lanyard-card-wrap:active {
+  cursor: grabbing;
+}
+
+/* Card Outer Shell */
+.lanyard-card {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(160deg, rgba(23, 28, 45, 0.95) 0%, rgba(13, 16, 28, 0.98) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 24px 20px 20px;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.8),
+    0 0 35px rgba(59, 130, 246, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+}
+
+/* Card Slot for lanyard */
+.lanyard-card__slot {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 8px;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* Dynamic Glare Reflection */
+.lanyard-card__glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  border-radius: 20px;
+  transition: opacity 0.25s ease;
+  mix-blend-mode: overlay;
+}
+
+/* Badge Inner */
+.lanyard-card__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+/* Badge Header */
+.badge-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 12px;
+}
+
+.badge-tag {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #60a5fa;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.badge-logo {
+  color: #93c5fd;
+  display: flex;
+  align-items: center;
+}
+
+/* Photo Area */
+.badge-photo-container {
+  display: flex;
+  justify-content: center;
+}
+
+.badge-photo-frame {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-photo-avatar {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 40%, rgba(59, 130, 246, 0.25) 0%, transparent 70%);
+}
+
+.badge-photo-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.9;
+}
+
+.figure-head {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.figure-body {
+  width: 110px;
+  height: 65px;
+  margin-top: 6px;
+  border-radius: 55px 55px 0 0;
+  background: linear-gradient(180deg, #1e293b 0%, #090d16 100%);
+  border-top: 2px solid rgba(96, 165, 250, 0.4);
+}
+
+.badge-photo-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 6px 10px;
+  background: linear-gradient(180deg, transparent 0%, rgba(5, 8, 15, 0.9) 100%);
+  display: flex;
+  justify-content: center;
+}
+
+.badge-photo-name {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Badge Info */
+.badge-info {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.badge-name {
+  font-family: var(--font-display, sans-serif);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+
+.badge-role {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
+  text-transform: uppercase;
+}
+
+.badge-chips {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.badge-chip {
+  font-family: var(--font-mono, monospace);
+  font-size: 9.5px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+}
+
+/* Barcode & Footer */
+.badge-footer {
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-barcode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.barcode-bars {
+  width: 85%;
+  height: 22px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    #ffffff 0px,
+    #ffffff 2px,
+    transparent 2px,
+    transparent 4px,
+    #ffffff 4px,
+    #ffffff 5px,
+    transparent 5px,
+    transparent 7px,
+    #ffffff 7px,
+    #ffffff 10px,
+    transparent 10px,
+    transparent 13px
+  );
+  opacity: 0.75;
+}
+
+.barcode-number {
+  font-family: var(--font-mono, monospace);
+  font-size: 8.5px;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.badge-quote {
+  font-size: 11px;
+  font-style: italic;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+@media (max-width: 968px) {
+  .lanyard-container {
+    max-width: 290px;
+    margin-top: 20px;
+  }
+
+  .lanyard-strap {
+    height: 60px;
+  }
+
+  .badge-photo-frame {
+    height: 150px;
+  }
+}
